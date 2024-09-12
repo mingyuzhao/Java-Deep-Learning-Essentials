@@ -2,9 +2,7 @@ package DLWJ.util;
 
 import java.util.Random;
 
-
 public final class GaussianDistribution {
-
     private final double mean;
     private final double var;
     private final Random rng;
@@ -37,5 +35,4 @@ public final class GaussianDistribution {
 
         return c * Math.cos( 2.0 * Math.PI * rng.nextDouble() ) * var + mean;
     }
-
 }

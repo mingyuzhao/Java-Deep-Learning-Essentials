@@ -1,12 +1,10 @@
-package DNN.SingleLayerNeuralNetworks;
+package DLWJ.SingleLayerNeuralNetworks;
 
 import java.util.Random;
-import DNN.util.GaussianDistribution;
-import static DNN.util.ActivationFunction.step;
-
+import DLWJ.util.GaussianDistribution;
+import static DLWJ.util.ActivationFunction.step;
 
 public class Perceptrons {
-
     public int nIn;       // dimensions of input data
     public double[] w;  // weight vector of perceptrons
 
@@ -181,6 +179,5 @@ public class Perceptrons {
         System.out.printf("Accuracy:  %.1f %%\n", accuracy * 100);
         System.out.printf("Precision: %.1f %%\n", precision * 100);
         System.out.printf("Recall:    %.1f %%\n", recall * 100);
-
     }
 }
