@@ -1,23 +1,24 @@
 package DLWJ.SingleLayerNeuralNetworks;
 
 import java.util.Random;
+
+import DLWJ.util.CoordinatePainter;
 import DLWJ.util.GaussianDistribution;
+import org.jfree.data.xy.XYSeries;
+import org.jfree.data.xy.XYSeriesCollection;
+
 import static DLWJ.util.ActivationFunction.step;
 
 public class Perceptrons {
     public int nIn;       // dimensions of input data
     public double[] w;  // weight vector of perceptrons
 
-
     public Perceptrons(int nIn) {
-
         this.nIn = nIn;
         w = new double[nIn];
-
     }
 
     public int train(double[] x, int t, double learningRate) {
-
         int classified = 0;
         double c = 0.;
 
@@ -39,7 +40,6 @@ public class Perceptrons {
     }
 
     public int predict (double[] x) {
-
         double preActivation = 0.;
 
         for (int i = 0; i < nIn; i++) {
@@ -49,9 +49,7 @@ public class Perceptrons {
         return step(preActivation);
     }
 
-
     public static void main(String[] args) {
-
         //
         // Declare (Prepare) variables and constants for perceptrons
         //
@@ -69,7 +67,6 @@ public class Perceptrons {
 
         final int epochs = 2000;   // maximum training epochs
         final double learningRate = 1.;  // learning rate can be 1 in perceptrons
-
 
         //
         // Create training data and test data for demo.
@@ -106,7 +103,12 @@ public class Perceptrons {
             test_X[i][1] = g1.random();
             test_T[i] = -1;
         }
-
+        XYSeries series1 = CoordinatePainter.getXYSeries("train", train_X, train_N);
+        XYSeries series2 = CoordinatePainter.getXYSeries("test", test_X, test_N);
+        XYSeriesCollection dataset = new XYSeriesCollection();
+        dataset.addSeries(series1);
+        dataset.addSeries(series2);
+        CoordinatePainter.paint(dataset);
 
         //
         // Build SingleLayerNeuralNetworks model
@@ -148,7 +150,6 @@ public class Perceptrons {
         double recall = 0.;
 
         for (int i = 0; i < test_N; i++) {
-
             if (predicted_T[i] > 0) {
                 if (test_T[i] > 0) {
                     accuracy += 1;
@@ -166,7 +167,6 @@ public class Perceptrons {
                     confusionMatrix[1][1] += 1;
                 }
             }
-
         }
 
         accuracy /= test_N;

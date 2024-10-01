@@ -8,7 +8,6 @@ import java.util.Random;
 import DLWJ.util.GaussianDistribution;
 import static DLWJ.util.ActivationFunction.softmax;
 
-
 public class LogisticRegression {
 
     public int nIn;
